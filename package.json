@@ -1,0 +1,11 @@
+{
+  "name": "word-lists",
+  "version": "1.0.0",
+  "description": "This repo intends to contain helpful `JSON` files related to words to allow ease of use for a scramble or any sort of game that needs random words.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "dpaulos6",
+  "license": "MIT"
+}
