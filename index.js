@@ -1,6 +1,6 @@
 /* 
 
-  This script allows you to easily convert a text file into a JSON file, and will delete the input text file after the conversion.
+  This script allows you to easily convert a text file into a JSON file, and will delete the input text file after the conversion. The script also sorts the words alphabetically.
   Warning: This script works for word lists with one word per line. This has not been tested with other types of files or multiple words per line.
   
   To run this, simply open terminal and run the following command: node index.js /path/to/input.txt /path/to/output.json.
