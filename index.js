@@ -1,7 +1,7 @@
 /* 
 
   This script allows you to easily convert a text file into a JSON file, and will delete the input text file after the conversion. The script also sorts the words alphabetically.
-  Warning: This script works for word lists with one word per line. This has not been tested with other types of files or multiple words per line.
+  Warning: This script works for word lists with one word per line or multiple words per line separated by spaces.
   
   To run this, simply open terminal and run the following command: node index.js /path/to/input.txt /path/to/output.json.
   If you do not specify the output file path, the script will create a JSON file with the same name as the input file in the same directory.
@@ -17,10 +17,12 @@ function textFileToJson(inputFilePath, outputFilePath) {
     const lines = text.split("\n");
     const words = [];
     lines.forEach((line) => {
-      const word = line.trim();
-      if (word) {
-        words.push(word);
-      }
+      line.split(" ").forEach((word) => {
+        const trimmedWord = word.trim().toLowerCase();
+        if (trimmedWord) {
+          words.push(trimmedWord);
+        }
+      });
     });
     words.sort((a, b) => a.localeCompare(b, "en", { sensitivity: "base" }));
     fs.writeFileSync(outputFilePath, JSON.stringify(words, null, 2));
