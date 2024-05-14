@@ -4,11 +4,12 @@
   Warning: This script works for word lists with one word per line. This has not been tested with other types of files or multiple words per line.
   
   To run this, simply open terminal and run the following command: node index.js /path/to/input.txt /path/to/output.json.
-  Please specify the paths correctly, if the file is inside the root folder of the script, do ./file.txt and ./file.json.
+  If you do not specify the output file path, the script will create a JSON file with the same name as the input file in the same directory.
 
 */
 
 const fs = require("fs");
+const path = require("path");
 
 function textFileToJson(inputFilePath, outputFilePath) {
   try {
@@ -31,11 +32,17 @@ function textFileToJson(inputFilePath, outputFilePath) {
   }
 }
 
-if (process.argv.length !== 4) {
-  console.error("Usage: node index.js <inputFilePath> <outputFilePath>");
+if (process.argv.length < 3 || process.argv.length > 4) {
+  console.error("Usage: node index.js <inputFilePath> [outputFilePath]");
   process.exit(1);
 }
 
 const inputFilePath = process.argv[2];
-const outputFilePath = process.argv[3];
+const outputFilePath =
+  process.argv[3] ||
+  path.join(
+    path.dirname(inputFilePath),
+    path.basename(inputFilePath, path.extname(inputFilePath)) + ".json"
+  );
+
 textFileToJson(inputFilePath, outputFilePath);
